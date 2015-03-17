@@ -28,7 +28,10 @@ This LDAP tools gem is designed as a wrapper around Net/LDAP to make interacting
 
 ## Installation
 ### Installation from rubygems
-*not yet supported*
+```
+gem install ldap_tools
+```
+
 ### Installation from source
 ```
 git clone git@github.com:Tapjoy/ldap_tools.git
