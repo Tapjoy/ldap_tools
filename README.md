@@ -1,3 +1,7 @@
+[![Gem Version](https://badge.fury.io/rb/ldap_tools.svg)](http://badge.fury.io/rb/ldap_tools)
+[![Code Climate](https://codeclimate.com/github/Tapjoy/ldap_tools/badges/gpa.svg)](https://codeclimate.com/github/Tapjoy/ldap_tools)
+[![Gem](https://img.shields.io/gem/dt/ldap_tools.svg)](https://rubygems.org/gems/ldap_tools/)
+
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**  *generated with [DocToc](http://doctoc.herokuapp.com/)*
