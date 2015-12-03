@@ -9,9 +9,15 @@ module Tapjoy
         case command
         when 'add', 'remove', 'install'
           send(command)
+        when 'list'
+          return
         else
           raise Tapjoy::LDAP::InvalidArgument
         end
+      end
+
+      def list(user)
+        get_keys_from_ldap[user]
       end
 
       ## Private methods start here ##
@@ -182,6 +188,8 @@ module Tapjoy
 
         # TODO method to remove from authorized_keys any key that is not in LDAP
       end
+
+
     end
   end
 end
