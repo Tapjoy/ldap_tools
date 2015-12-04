@@ -23,10 +23,10 @@ when 'group'
   commands('This object is used for group management', cmd, GROUP_SUB_COMMANDS)
   Tapjoy::LDAP::Group.new
 when 'key'
-  KEY_SUB_COMMANDS = %w(add remove install list)
+  KEY_SUB_COMMANDS = %w(add remove install list show)
   commands('This object is used for group management', cmd, KEY_SUB_COMMANDS)
   keys = Tapjoy::LDAP::Key.new
-  puts keys.list(ARGV.shift)
+  puts keys.show(ARGV.shift)
 when 'audit'
   AUDIT_SUB_COMMANDS = %w(by_user by_group raw)
   commands('This object is used for auditing LDAP permissions', cmd, AUDIT_SUB_COMMANDS)

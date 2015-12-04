@@ -7,16 +7,16 @@ module Tapjoy
         command = ARGV.shift
 
         case command
-        when 'add', 'remove', 'install'
+        when 'add', 'remove', 'install', 'list'
           send(command)
-        when 'list'
+        when 'show'
           return
         else
           raise Tapjoy::LDAP::InvalidArgument
         end
       end
 
-      def list(user)
+      def show(user)
         get_keys_from_ldap[user]
       end
 
@@ -186,10 +186,12 @@ module Tapjoy
           end
         end
 
-        # TODO method to remove from authorized_keys any key that is not in LDAP
+        # @TODO method to remove from authorized_keys any key that is not in LDAP
       end
 
-
+      def list
+        puts get_keys_from_ldap
+      end
     end
   end
 end
