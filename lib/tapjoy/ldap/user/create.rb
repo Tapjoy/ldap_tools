@@ -44,7 +44,7 @@ module Tapjoy
             puts 'Unknown type'
           end
 
-          dn = "uid=#{ username },ou=People,#{ Tapjoy::LDAP::client.basedn }"
+          dn = "uid=#{ username },ou=#{ou},#{ Tapjoy::LDAP::client.basedn }"
           puts Tapjoy::LDAP::client.add(dn, ldap_attr)
         end
 
