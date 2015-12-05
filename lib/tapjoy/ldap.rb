@@ -6,6 +6,7 @@ require_relative 'ldap/group'
 require_relative 'ldap/key'
 require_relative 'ldap/user'
 require_relative 'ldap/audit'
+require_relative 'ldap/version'
 
 module Tapjoy
   module LDAP
