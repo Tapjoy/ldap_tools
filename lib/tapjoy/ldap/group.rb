@@ -1,6 +1,28 @@
 module Tapjoy
   module LDAP
     class Group
+      class << self
+        # Lookup GID for the given group
+        def lookup_id(groupname)
+          gidnumber = []
+
+          oc_filter = Net::LDAP::Filter.eq('objectclass', 'posixGroup')
+          cn_filter = Net::LDAP::Filter.eq('cn', groupname)
+          filter    = Net::LDAP::Filter.join(oc_filter, cn_filter)
+
+          results = Tapjoy::LDAP::client.search(['gidNumber'], filter)
+
+          # Make sure we return one, and only one group
+          if results.size < 1
+            abort('Group not found')
+          elsif results.size > 1
+            abort('Multiple groups found. Please narrow your search.')
+          end
+
+          results.each { |result| gidnumber = result.gidnumber }
+          return gidnumber[0]
+        end
+      end
 
       attr_reader :groupname, :servers, :conn
 
@@ -22,6 +44,7 @@ module Tapjoy
       end
 
       # Lookup GID for the given group
+      # @TODO: Remove this in favor of class method
       def lookup_id(groupname)
         gidnumber = []
 
