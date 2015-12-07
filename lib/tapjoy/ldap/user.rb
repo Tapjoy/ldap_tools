@@ -3,6 +3,7 @@ require_relative 'user/delete'
 
 module Tapjoy
   module LDAP
+    # Entry point for all user subcommands
     module User
       class << self
         SUB_COMMANDS = %w(create delete)
@@ -38,27 +39,3 @@ module Tapjoy
     end
   end
 end
-#
-#       # Instantiate class
-#       def initialize
-#         command = ARGV.shift
-#
-#         case command
-#         when 'create', 'delete'
-#           send(command)
-#         else
-#           raise Tapjoy::LDAP::InvalidArgument
-#         end
-#       end
-#
-#       private
-#       # Create user in LDAP
-
-#
-#       # Delete user from LDAP
-
-#       end
-#
-#     end
-#   end
-# end
