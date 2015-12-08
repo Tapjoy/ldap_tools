@@ -29,7 +29,7 @@ module Tapjoy
           print '>'
           confirm = STDIN.gets.chomp().downcase
           unless confirm.eql?('y') || confirm.eql?('yes')
-            abort("Deletion of #{ opts[:group] } aborted")
+            abort("Deletion of #{ opts[:name] } aborted")
           end
         end
       end

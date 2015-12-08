@@ -1,6 +1,4 @@
 /tmp
 *.gem
 .bundle/
-.rspec
 Gemfile.lock
-spec/
