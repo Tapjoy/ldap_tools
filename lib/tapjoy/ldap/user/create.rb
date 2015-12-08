@@ -3,6 +3,7 @@ require 'securerandom'
 module Tapjoy
   module LDAP
     module User
+      # Create LDAP user
       class Create
         def opts
           @opts ||= Trollop::options do
@@ -28,23 +29,12 @@ module Tapjoy
         def gidnumber
           @gidnumber ||= Tapjoy::LDAP::Group.lookup_id(opts[:group])
         end
-        
+
         def create
           # Check for errors
           Trollop::die :user, 'argument count must be two' if opts[:user].size != 2
           Trollop::die :type, "argument must be 'user' or 'service'" unless ['user', 'service'].include?opts[:type]
 
-
-          case opts[:type]
-          when 'user'
-            ou = 'People'
-          when 'service'
-            ou = Tapjoy::LDAP::client.service_ou
-          else
-            puts 'Unknown type'
-          end
-
-          dn = "uid=#{ username },ou=#{ou},#{ Tapjoy::LDAP::client.basedn }"
           puts Tapjoy::LDAP::client.add(dn, ldap_attr)
         end
 
@@ -76,6 +66,23 @@ module Tapjoy
             :gidnumber     => gidnumber,
             :userpassword  => '{SSHA}' + create_password
           }
+        end
+
+        def dn
+          @dn ||= "uid=#{username},ou=#{ou},#{Tapjoy::LDAP::client.basedn}"
+        end
+
+        def ou
+          @ou ||= begin
+            case opts[:type]
+            when 'user'
+              ou = 'People'
+            when 'service'
+              ou = Tapjoy::LDAP::client.service_ou
+            else
+              puts 'Unknown type'
+            end
+          end
         end
       end
     end

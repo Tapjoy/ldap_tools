@@ -1,6 +1,7 @@
 module Tapjoy
   module LDAP
     module User
+      # Delete LDAP user
       class Delete
         def opts
           @opts ||= Trollop::options do
