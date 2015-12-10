@@ -1,87 +1,72 @@
+require_relative 'audit/by_user'
+require_relative 'audit/by_group'
 module Tapjoy
   module LDAP
-    class Audit
+    module Audit
+      class << self
+        SUB_COMMANDS = %w(by_user by_group raw)
 
-      # Instantiate class
-      def initialize
-        command = ARGV.shift
+        def commands
+          Trollop::options do
+            usage 'user [SUB_COMMAND] [options]'
+            synopsis "\nThis object is used for auditing LDAP permissions\nAvailable subcommands are: #{SUB_COMMANDS}"
 
-        case command
-        when 'by_user', 'by_group', 'raw'
-          send(command)
-        else
-          raise Tapjoy::LDAP::InvalidArgument
-        end
-      end
+            stop_on SUB_COMMANDS
+          end
 
-      private
+          cmd = ARGV.shift
 
-      # Clean output of hashes
-      def print_hash(header_string, object_hash)
-        puts header_string
-        puts "=" * header_string.length
-        object_hash.each_pair do |key, values|
-          next if values.empty?
-          puts "- #{key}"
-          values.each { |value| puts "  - #{value}" }
-        end
-      end
-
-      # Get list of users
-      def get_users
-        user_list = Array.new
-
-        filter = Net::LDAP::Filter.eq('objectclass', 'posixAccount')
-        attributes = ['uid']
-
-        results = Tapjoy::LDAP::client.search(attributes, filter)
-        results.each do |entry|
-          user_list << entry['uid'].first
-        end
-
-        return user_list.sort
-      end
-
-      # Get hash of groups with list of members of each group
-      def get_groups_with_membership
-        filter = Net::LDAP::Filter.eq('objectclass', 'posixGroup')
-        attributes = ['cn', 'memberUid']
-
-        results = Tapjoy::LDAP::client.search(attributes, filter)
-
-      end
-
-      # Get a group to user mapping
-      def by_user
-        user_groups = Hash.new
-        user_list = get_users
-        group_results = get_groups_with_membership
-
-        user_list.each do |user|
-          user_groups[user] = Array.new
-          group_results.each do |entry|
-            user_groups[user] << entry['cn'].first if entry['memberUid'].include?(user)
+          case cmd
+          when 'by_user', 'by_group', 'raw'
+            send(cmd) # call method with respective name
+          else
+            raise Tapjoy::LDAP::InvalidArgument
           end
         end
 
-        print_hash('Groups by user', user_groups)
-      end
-
-      # Get a user to group mapping
-      def by_group
-        group_membership = Hash.new
-
-        get_groups_with_membership.each do |entry|
-          group_membership[entry['cn'].first] = entry['memberUid']
+        def by_group
+          audit = Tapjoy::LDAP::Audit::ByGroup.new
+          audit.by_group
         end
 
-        print_hash('Users in groups', group_membership)
-      end
+        def by_user
+          audit = Tapjoy::LDAP::Audit::ByUser.new
+          audit.by_user
+        end
 
-      # Print raw output
-      def raw
-        results = Tapjoy::LDAP::client.search
-        puts results.inspect
+        def raw
+          puts Tapjoy::LDAP::client.search.inspect
+        end
+
+        # Get hash of groups with list of members of each group
+        def get_groups_with_membership
+          filter = Net::LDAP::Filter.eq('objectclass', 'posixGroup')
+          attributes = %w(cn memberUid)
+
+          results = Tapjoy::LDAP::client.search(attributes, filter)
+        end
+
+
+        # Clean output of hashes
+        def print_hash(header_string, object_hash)
+          puts header_string
+          puts "=" * header_string.length
+          object_hash.each_pair do |key, values|
+            next if values.empty?
+            puts "- #{key}"
+            values.each { |value| puts "  - #{value}" }
+          end
+        end
+
+        private
+        # Get a user to group mapping
+
+
+        # # Print raw output
+        # def raw
+        #   results = T
+        #   puts results.inspect
+        # end
       end
     end
   end

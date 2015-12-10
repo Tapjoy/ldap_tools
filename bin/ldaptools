@@ -27,9 +27,9 @@ when 'group'
 when 'key'
   Tapjoy::LDAP::Key.commands
 when 'audit'
-  AUDIT_SUB_COMMANDS = %w(by_user by_group raw)
-  commands('This object is used for auditing LDAP permissions', cmd, AUDIT_SUB_COMMANDS)
-  Tapjoy::LDAP::Audit.new
+  # AUDIT_SUB_COMMANDS = %w(by_user by_group raw)
+  # commands(, cmd, AUDIT_SUB_COMMANDS)
+  Tapjoy::LDAP::Audit.commands
 else
   raise Tapjoy::LDAP::InvalidArgument
 end
