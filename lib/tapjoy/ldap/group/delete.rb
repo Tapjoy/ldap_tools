@@ -4,7 +4,7 @@ module Tapjoy
       # Delete LDAP group
       class Delete
         def delete
-          unless opts[:force] confirm
+          confirm unless opts[:force]
           puts Tapjoy::LDAP::client.delete(dn)
         end
 
