@@ -39,20 +39,20 @@ module Tapjoy
       end
 
       # Add objects to LDAP
-      def add(dn, attributes)
-        @conn.add(:dn => dn, :attributes => attributes)
+      def add(distinguished_name, attributes)
+        @conn.add(:dn => distinguished_name, :attributes => attributes)
         return return_result
       end
 
       # Modify objects in LDAP
-      def modify(dn, operations)
-        @conn.modify(:dn => dn, :operations => operations)
+      def modify(distinguished_name, operations)
+        @conn.modify(:dn => distinguished_name, :operations => operations)
         return return_result
       end
 
       # Delete objects from LDAP
-      def delete(dn)
-        @conn.delete(:dn => dn)
+      def delete(distinguished_name)
+        @conn.delete(:dn => distinguished_name)
         return return_result
       end
 

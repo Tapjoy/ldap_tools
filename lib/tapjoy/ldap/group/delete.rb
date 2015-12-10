@@ -5,7 +5,7 @@ module Tapjoy
       class Delete
         def delete
           confirm unless opts[:force]
-          puts Tapjoy::LDAP::client.delete(dn)
+          puts Tapjoy::LDAP::client.delete(distinguished_name)
         end
 
         private
@@ -20,8 +20,8 @@ module Tapjoy
           end
         end
 
-        def dn
-          @dn ||= "cn=#{opts[:name]},ou=Group,#{Tapjoy::LDAP::client.basedn}"
+        def distinguished_name
+          @distinguished_name ||= "cn=#{opts[:name]},ou=Group,#{Tapjoy::LDAP::client.basedn}"
         end
 
         def confirm

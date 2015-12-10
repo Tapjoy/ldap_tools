@@ -27,7 +27,7 @@ describe 'Tapjoy::LDAP::User::Create.create' do
   it 'creates a user' do
     ARGV << %w(create -u test user -g users); ARGV.flatten!
     allow_any_instance_of(Tapjoy::LDAP::User::Create).to receive(:create_password).and_return('testpass')
-    expect(fake_ldap).to receive(:add).with(dn, ldap_attr)
+    expect(fake_ldap).to receive(:add).with(distinguished_name, ldap_attr)
     Tapjoy::LDAP::User.commands
   end
 end

@@ -9,7 +9,7 @@ describe 'Tapjoy::LDAP::Group::Create.create' do
 
   it 'creates a group' do
     ARGV << %w(create -n testgroup); ARGV.flatten!
-    expect(fake_ldap).to receive(:add).with(dn, ldap_attr)
+    expect(fake_ldap).to receive(:add).with(distinguished_name, ldap_attr)
     Tapjoy::LDAP::Group.commands
   end
 end

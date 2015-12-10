@@ -10,7 +10,7 @@ module Tapjoy
           Trollop::die :user, 'argument count must be two' if opts[:user].size != 2
           Trollop::die :type, "argument must be 'user' or 'service'" unless ['user', 'service'].include?opts[:type]
 
-          puts Tapjoy::LDAP::client.add(dn, ldap_attr)
+          puts Tapjoy::LDAP::client.add(distinguished_name, ldap_attr)
         end
 
         private
@@ -45,17 +45,17 @@ module Tapjoy
           }
         end
 
-        def dn
-          @dn ||= "uid=#{username},ou=#{ou},#{Tapjoy::LDAP::client.basedn}"
+        def distinguished_name
+          @distinguished_name ||= "uid=#{username},ou=#{organizational_unit},#{Tapjoy::LDAP::client.basedn}"
         end
 
-        def ou
-          @ou ||= begin
+        def organizational_unit
+          @organizational_unit ||= begin
             case opts[:type]
             when 'user'
-              ou = 'People'
+              'People'
             when 'service'
-              ou = Tapjoy::LDAP::client.service_ou
+              Tapjoy::LDAP::client.service_ou
             else
               puts 'Unknown type'
             end

@@ -4,8 +4,8 @@ module Tapjoy
       # Delete LDAP user
       class Delete
         def delete
-          confirm unless opts[:force] 
-          puts Tapjoy::LDAP::client.delete(dn)
+          confirm unless opts[:force]
+          puts Tapjoy::LDAP::client.delete(distinguished_name)
         end
 
         private
@@ -20,12 +20,12 @@ module Tapjoy
           end
         end
 
-        def dn
-          @dn ||= "uid=#{opts[:user]},ou=#{ou},#{Tapjoy::LDAP::client.basedn}"
+        def distinguished_name
+          @distinguished_name ||= "uid=#{opts[:user]},ou=#{organizational_unit},#{Tapjoy::LDAP::client.basedn}"
         end
 
         def confirm
-          puts "Confirm that you want to delete user: #{ opts[:user] }"
+          puts "Confirm that you want to delete user: #{opts[:user]} (yes/no)"
           print '>'
           confirm = STDIN.gets.chomp().downcase
           unless confirm.eql?('y') || confirm.eql?('yes')
@@ -33,13 +33,13 @@ module Tapjoy
           end
         end
 
-        def ou
-          @ou ||= begin
+        def organizational_unit
+          @organizational_unit ||= begin
             case opts[:type]
             when 'user'
-              ou = 'People'
+              'People'
             when 'service'
-              ou = Tapjoy::LDAP::client.service_ou
+              Tapjoy::LDAP::client.service_ou
             else
               puts 'Unknown type'
             end
