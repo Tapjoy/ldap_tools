@@ -23,9 +23,7 @@ case cmd
 when "user"  # run commands associated with user object
   Tapjoy::LDAP::User.commands
 when 'group'
-  GROUP_SUB_COMMANDS = %w(create delete add_user)
-  commands('This object is used for group management', cmd, GROUP_SUB_COMMANDS)
-  Tapjoy::LDAP::Group.new
+  Tapjoy::LDAP::Group.commands
 when 'key'
   KEY_SUB_COMMANDS = %w(add remove install list show)
   commands('This object is used for group management', cmd, KEY_SUB_COMMANDS)
