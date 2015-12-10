@@ -44,6 +44,16 @@ module Tapjoy
         return return_result
       end
 
+      def add_attribute(distinguished_name, attribute, value)
+        @conn.add_attribute(dn, attribute, value)
+        return return_result
+      end
+
+      def replace_attribute(distinguished_name, attribute, value)
+        @conn.replace_attribute(distinguished_name, attribute, value)
+        return_result
+      end
+
       # Modify objects in LDAP
       def modify(distinguished_name, operations)
         @conn.modify(:dn => distinguished_name, :operations => operations)
