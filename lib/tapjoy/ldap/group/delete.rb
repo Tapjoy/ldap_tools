@@ -25,7 +25,7 @@ module Tapjoy
         end
 
         def confirm
-          puts "Confirm that you want to delete group #{opts[:group]} (yes/no)"
+          puts "Confirm that you want to delete group #{opts[:name]} (yes/no)"
           print '>'
           confirm = STDIN.gets.chomp().downcase
           unless confirm.eql?('y') || confirm.eql?('yes')
