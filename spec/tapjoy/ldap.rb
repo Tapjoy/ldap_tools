@@ -1,3 +1,4 @@
+require_relative '../spec_helper'
 RSpec.shared_context 'ldap' do
   ARGV.clear
   before(:each) do
