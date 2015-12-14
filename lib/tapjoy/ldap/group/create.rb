@@ -7,7 +7,7 @@ module Tapjoy
           # Check for errors
           Trollop::die :type, "argument must be 'user' or 'service'" unless ['user', 'service'].include?opts[:type]
 
-          puts Tapjoy::LDAP::client.add(dn, ldap_attr)
+          puts Tapjoy::LDAP::client.add(distinguished_name, ldap_attr)
         end
 
         private
@@ -23,8 +23,8 @@ module Tapjoy
           end
         end
 
-        def dn
-          @dn ||= "cn=#{opts[:name]},ou=Group,#{Tapjoy::LDAP::client.basedn}"
+        def distinguished_name
+          @distinguished_name ||= "cn=#{opts[:name]},ou=Group,#{Tapjoy::LDAP::client.basedn}"
         end
 
         def ldap_attr

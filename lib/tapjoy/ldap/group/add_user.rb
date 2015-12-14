@@ -4,7 +4,7 @@ module Tapjoy
       # Add existing user to existing group
       class AddUser
         def add_user
-          puts Tapjoy::LDAP::client.modify(dn, operations)
+          puts Tapjoy::LDAP::client.modify(distinguished_name, operations)
         end
 
         private
@@ -19,8 +19,8 @@ module Tapjoy
           end
         end
 
-        def dn
-          @dn ||= "cn=#{opts[:group]},ou=Group,#{Tapjoy::LDAP::client.basedn}"
+        def distinguished_name
+          @distinguished_name ||= "cn=#{opts[:group]},ou=Group,#{Tapjoy::LDAP::client.basedn}"
         end
 
         def operations
