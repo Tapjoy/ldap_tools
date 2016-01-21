@@ -87,6 +87,7 @@ Help is available for all subcommands in a similar fashion.
 * group create
 * group delete
 * group add_user
+* group remove_user
 * key add
 * key remove
 * key install
