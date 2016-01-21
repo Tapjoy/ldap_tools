@@ -20,7 +20,7 @@ end
 
 cmd = ARGV.shift # get the subcommand
 case cmd
-when "user"  # run commands associated with user object
+when 'user'  # run commands associated with user object
   Tapjoy::LDAP::User.commands
 when 'group'
   Tapjoy::LDAP::Group.commands

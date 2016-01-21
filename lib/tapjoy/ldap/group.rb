@@ -1,6 +1,7 @@
 require_relative 'group/create'
 require_relative 'group/delete'
 require_relative 'group/add_user'
+require_relative 'group/remove_user'
 
 module Tapjoy
   module LDAP
@@ -8,7 +9,7 @@ module Tapjoy
     module Group
       class << self
 
-        SUB_COMMANDS = %w(create delete add_user)
+        SUB_COMMANDS = %w(create delete add_user remove_user)
 
         def commands
           Trollop::options do
@@ -21,7 +22,7 @@ module Tapjoy
           cmd = ARGV.shift
 
           case cmd
-          when 'create', 'delete', 'add_user'
+          when 'create', 'delete', 'add_user', 'remove_user'
             send(cmd) # call method with respective name
           else
             raise Tapjoy::LDAP::InvalidArgument
@@ -64,6 +65,11 @@ module Tapjoy
         def add_user
           group = Tapjoy::LDAP::Group::AddUser.new
           group.add_user
+        end
+
+        def remove_user
+          group = Tapjoy::LDAP::Group::RemoveUser.new
+          group.remove_user
         end
       end
     end
