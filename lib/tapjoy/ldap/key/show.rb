@@ -6,7 +6,7 @@ module Tapjoy
         def show
           username = opts[:user]
           keys = Tapjoy::LDAP::Key.get_keys_from_ldap[username]
-          puts "No keys found for #{opts[:user]}" if keys.length? 0
+          puts "No keys found for #{opts[:user]}" if keys.nil?
           puts keys
         end
 
