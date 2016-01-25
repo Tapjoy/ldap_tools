@@ -45,7 +45,7 @@ module Tapjoy
       end
 
       def add_attribute(distinguished_name, attribute, value)
-        @conn.add_attribute(dn, attribute, value)
+        @conn.add_attribute(distinguished_name, attribute, value)
         return return_result
       end
 
