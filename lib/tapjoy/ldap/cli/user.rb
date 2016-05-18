@@ -1,5 +1,6 @@
 require_relative 'user/create'
 require_relative 'user/delete'
+require_relative 'user/show'
 require_relative '../api/user'
 module Tapjoy
   module LDAP
@@ -7,7 +8,7 @@ module Tapjoy
       # CLI Module for all user commands
       module User
         class << self
-          SUB_COMMANDS = %w(create delete)
+          SUB_COMMANDS = %w(create delete index show)
 
           def commands
             Trollop::options do
@@ -20,7 +21,7 @@ module Tapjoy
             cmd = ARGV.shift
 
             case cmd
-            when 'create', 'delete'
+            when 'create', 'delete', 'index', 'show'
               send(cmd) # call method with respective name
             else
               raise Tapjoy::LDAP::InvalidArgument
@@ -36,6 +37,24 @@ module Tapjoy
             user = Tapjoy::LDAP::CLI::User::Delete.new
             user.delete
           end
+
+          def index
+            Tapjoy::LDAP::API::User.index.each do |entry|
+              puts "DN: #{entry.dn}"
+              entry.each do |attribute, values|
+                puts "   #{attribute}:"
+                values.each do |value|
+                  puts "      --->#{value}"
+                end
+              end
+            end
+          end
+
+          def show
+            user = Tapjoy::LDAP::CLI::User::Show.new
+            user.show
+          end
+
         end
       end
     end

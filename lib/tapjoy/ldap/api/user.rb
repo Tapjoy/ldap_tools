@@ -7,7 +7,7 @@ module Tapjoy
           extend Memoist
           def create(fname, lname, type, group)
             # Properly capitalize names
-            fname, lname = [fname, lname].map(&:titleize)
+            fname, lname = [fname, lname].map(&:capitalize)
 
             Tapjoy::LDAP::client.add(
               distinguished_name(fname, lname, type),
@@ -21,11 +21,26 @@ module Tapjoy
             )
           end
 
+          def index
+            Tapjoy::LDAP::client.search('*', filter(uid: '*'))
+          end
+
+          def show(username)
+            Tapjoy::LDAP::client.search('*', filter(uid: username))
+          end
+
           private
+
+          # Filter users for #show and #index
+          def filter(uid: '*')
+            Net::LDAP::Filter.eq('uid', uid)
+          end
+
           # Given a username, return First and Last names
           def name_of_user(username)
-            username.split('.').map(&:titleize)
+            username.split('.').map(&:capitalize)
           end
+          memoize :name_of_user
 
           # Given First and Last names, return a username
           def username(fname, lname)
@@ -60,8 +75,8 @@ module Tapjoy
               cn:             [fname, lname].join(' '),
               objectclass:    %w(top posixAccount shadowAccount inetOrgPerson
                                    organizationalPerson person ldapPublicKey),
-              sn:             fname,
-              givenname:      lname,
+              sn:             lname,
+              givenname:      fname,
               # Empty string is an alias for the root of the FS
               homedirectory:  File.join('','home', uid),
               loginshell:     File.join('','bin', 'bash'),
@@ -90,7 +105,6 @@ module Tapjoy
               password = SecureRandom.base64(64)
               password = Digest::SHA1.base64digest(password + salt)
           end
-          memoize :create_password
         end
       end
     end

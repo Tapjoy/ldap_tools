@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 require 'tapjoy/ldap'
 
-# Tapjoy::LDAP::CLI.commands
+Tapjoy::LDAP::CLI.commands
 # Tapjoy::LDAP::API::User.create('ali', 'tayarani', 'user', 'users')
 # Tapjoy::LDAP::API::User.destroy('ali.tayarani', 'user')

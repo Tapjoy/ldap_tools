@@ -1,5 +1,5 @@
 require_relative '../group'
-describe 'Tapjoy::LDAP::Group::Delete.delete' do
+RSpec.describe 'Tapjoy::LDAP::Group::Delete.delete' do
   include_context 'group'
 
   it 'deletes a group' do

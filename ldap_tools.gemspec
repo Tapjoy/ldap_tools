@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.homepage              = 'https://github.com/Tapjoy/ldap_tools'
   s.license               = 'MIT'
   s.executables           = ['ldaptools']
-  s.required_ruby_version = '>= 2.1'
+  s.required_ruby_version = '>= 2.2'
   s.add_runtime_dependency('trollop',  '~> 2.1')
   s.add_runtime_dependency('net-ldap', '= 0.11')
   s.add_runtime_dependency('highline', '~> 1.0')
