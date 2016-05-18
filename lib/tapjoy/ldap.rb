@@ -1,10 +1,12 @@
 require 'net/ldap'
 require 'yaml'
 require 'trollop'
+require 'active_support/core_ext/string/inflections' # for titleize
+require_relative 'ldap/cli'
+require_relative 'ldap/api/user'
 require_relative 'ldap/base'
 require_relative 'ldap/group'
 require_relative 'ldap/key'
-require_relative 'ldap/user'
 require_relative 'ldap/audit'
 require_relative 'ldap/version'
 

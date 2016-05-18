@@ -1,35 +1,5 @@
 #!/usr/bin/env ruby
 require 'tapjoy/ldap'
 
-# @TODO: Remove this in favor of newer methods
-def commands(synopsis, object, sub_commands)
-  Trollop::options do
-    usage "#{object} [SUB_COMMAND] [options]"
-    synopsis "\n#{synopsis}.\nAvailable subcommands are: #{sub_commands}"
-    stop_on sub_commands
-  end
-end
-
-SUB_COMMANDS = %w(user group key audit)
-Trollop::options do
-  usage '[SUB_COMMAND] [options]'
-  synopsis "\nTool to manage LDAP resources.\nAvailable subcommands are: #{SUB_COMMANDS}"
-  version "#{File.basename($PROGRAM_NAME)} #{Tapjoy::LDAP::VERSION} \u00A9 2015 Tapjoy, Inc."
-  stop_on SUB_COMMANDS
-end
-
-cmd = ARGV.shift # get the subcommand
-case cmd
-when 'user'  # run commands associated with user object
-  Tapjoy::LDAP::User.commands
-when 'group'
-  Tapjoy::LDAP::Group.commands
-when 'key'
-  Tapjoy::LDAP::Key.commands
-when 'audit'
-  # AUDIT_SUB_COMMANDS = %w(by_user by_group raw)
-  # commands(, cmd, AUDIT_SUB_COMMANDS)
-  Tapjoy::LDAP::Audit.commands
-else
-  raise Tapjoy::LDAP::InvalidArgument
-end
+# Tapjoy::LDAP::CLI.commands
+Tapjoy::LDAP::API::User.create('ali', 'tayarani', 'user', 'users')
