@@ -2,12 +2,15 @@ module Tapjoy
   module LDAP
     module CLI
       module User
+        # Manipulates data to a format usable by the API structure
         class Create
+          # Tapjoy::LDAP::CLI::User::Create#create
+          # Make the API call to create an LDAP user
           def create
             verify_arguments
             fname, lname = opts[:user]
-            puts Tapjoy::LDAP::API::User.create(fname, lname, type)
-            # puts Tapjoy::LDAP::client.add(distinguished_name, ldap_attr)
+            puts Tapjoy::LDAP::API::User.create(fname, lname,
+              opts[:type], opts[:group])
           end
 
           private

@@ -1,7 +1,10 @@
 require_relative 'user/create'
+require_relative 'user/delete'
+require_relative '../api/user'
 module Tapjoy
   module LDAP
     module CLI
+      # CLI Module for all user commands
       module User
         class << self
           SUB_COMMANDS = %w(create delete)

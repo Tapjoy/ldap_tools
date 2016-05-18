@@ -8,15 +8,26 @@ module Tapjoy
           def create(fname, lname, type, group)
             # Properly capitalize names
             fname, lname = [fname, lname].map(&:titleize)
-            
-            puts Tapjoy::LDAP::client.add(
+
+            Tapjoy::LDAP::client.add(
               distinguished_name(fname, lname, type),
               ldap_attr(fname, lname, type, group)
             )
           end
 
-          private
+          def destroy(username, type)
+            Tapjoy::LDAP::client.delete(
+              distinguished_name(*name_of_user(username), type)
+            )
+          end
 
+          private
+          # Given a username, return First and Last names
+          def name_of_user(username)
+            username.split('.').map(&:titleize)
+          end
+
+          # Given First and Last names, return a username
           def username(fname, lname)
             [fname, lname].join('.').downcase
           end
