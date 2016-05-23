@@ -1,3 +1,5 @@
+require 'codeclimate-test-reporter'
+CodeClimate::TestReporter.start
 require_relative '../lib/tapjoy/ldap'
 Dir[File.expand_path('../support/**/*.rb', __FILE__)].to_a.each do |dir|
   require dir

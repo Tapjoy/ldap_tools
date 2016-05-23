@@ -1,2 +1,4 @@
 language: ruby
 script: bundle exec rspec
+env:
+- CODECLIMATE_REPO_TOKEN=2cff2005b23d01ada7115f762435e1ce59cfe22d2ac8adbe289e9e1267254656
