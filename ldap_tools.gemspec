@@ -11,9 +11,17 @@ Gem::Specification.new do |s|
   s.homepage              = 'https://github.com/Tapjoy/ldap_tools'
   s.license               = 'MIT'
   s.executables           = ['ldaptools']
-  s.required_ruby_version = '>= 2.1'
+  s.required_ruby_version = '>= 2.2'
   s.add_runtime_dependency('trollop',  '~> 2.1')
   s.add_runtime_dependency('net-ldap', '= 0.11')
   s.add_runtime_dependency('highline', '~> 1.0')
+  s.add_runtime_dependency('memoist', '>= 0.14')
+  s.add_runtime_dependency('activesupport', '~> 4.2')
   s.add_development_dependency('rspec', '~> 3.2')
+  s.add_development_dependency('yard', '~> 0.8')
+  s.add_development_dependency('guard', '~> 2.13')
+  s.add_development_dependency('guard-bundler', '~> 2.1')
+  s.add_development_dependency('guard-rubycritic', '~> 2.9')
+  s.add_development_dependency('guard-yard', '~> 2.1')
+  s.add_development_dependency('guard-yardstick', '~> 0.1')
 end

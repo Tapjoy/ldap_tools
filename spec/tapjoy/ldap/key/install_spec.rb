@@ -1,6 +1,5 @@
-require_relative '../../../spec_helper'
 require_relative '../key'
-describe 'Tapjoy::LDAP::Key::Install.install' do
+RSpec.describe 'Tapjoy::LDAP::Key::Install.install' do
   include_context 'key'
 
   let(:ldap_hash) {

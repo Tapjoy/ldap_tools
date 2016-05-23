@@ -1,6 +1,5 @@
-require_relative '../../../spec_helper'
 require_relative '../group'
-describe 'Tapjoy::LDAP::Group::Create.create' do
+RSpec.describe 'Tapjoy::LDAP::Group::Create.create' do
   include_context 'group'
 
   let!(:ldap_attr) {

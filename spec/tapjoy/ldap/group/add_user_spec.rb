@@ -1,5 +1,5 @@
 require_relative '../group'
-describe 'Tapjoy::LDAP::Group::AddUser.add_user' do
+RSpec.describe 'Tapjoy::LDAP::Group::AddUser.add_user' do
   include_context 'group'
   let(:operations) {[[:add, :memberUid, 'test.user']]}
 

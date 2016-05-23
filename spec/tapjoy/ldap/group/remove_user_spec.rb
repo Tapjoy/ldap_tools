@@ -1,5 +1,5 @@
 require_relative '../group'
-describe 'Tapjoy::LDAP::Group::RemoveUser.remove_user' do
+RSpec.describe 'Tapjoy::LDAP::Group::RemoveUser.remove_user' do
   include_context 'group'
   let(:operations) {[[:delete, :memberUid, 'test.user']]}
 
