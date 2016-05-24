@@ -1,5 +1,5 @@
 [![Gem Version](https://badge.fury.io/rb/ldap_tools.svg)](http://badge.fury.io/rb/ldap_tools)
-[![Code Climate](https://codeclimate.com/github/Tapjoy/ldap_tools/badges/gpa.svg)](https://codeclimate.com/github/Tapjoy/ldap_tools)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/d9960990c19144b3bb60fd2a0eaea9c5)](https://www.codacy.com/app/ali-tayarani/ldap_tools?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Tapjoy/ldap_tools&amp;utm_campaign=Badge_Grade)
 [![Gem](https://img.shields.io/gem/dt/ldap_tools.svg)](https://rubygems.org/gems/ldap_tools/)
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
