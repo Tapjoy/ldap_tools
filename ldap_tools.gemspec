@@ -24,5 +24,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency('guard-rubycritic', '~> 2.9')
   s.add_development_dependency('guard-yard', '~> 2.1')
   s.add_development_dependency('guard-yardstick', '~> 0.1')
-  s.add_development_dependency('codeclimate-test-reporter', '~>0.5')
+  s.add_development_dependency('codacy-coverage', '~>1.0')
 end
