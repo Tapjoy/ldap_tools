@@ -14,7 +14,7 @@ module Tapjoy
 
           private
           def opts
-            @opts ||= Trollop::options do
+            @opts ||= Trollop.options do
               # Set help message
               usage "user delete [options]"
 
@@ -27,14 +27,12 @@ module Tapjoy
           def confirm
             puts "Confirm that you want to delete user: #{opts[:user]} (yes/no)"
             print '>'
-            confirm = STDIN.gets.chomp().downcase
-            unless confirm.eql?('y') || confirm.eql?('yes')
-              abort("Deletion of #{ opts[:user] } aborted")
-            end
+            confirm = STDIN.gets.chomp.downcase
+            abort("Deletion of #{opts[:user]} aborted") unless confirm.start_with?('y')
           end
 
           def verify_arguments
-            Trollop::die :type, "argument must be 'user' or 'service'" unless %w(user service).include?opts[:type]
+            Trollop.die :type, "argument must be 'user' or 'service'" unless %w(user service).include?(opts[:type])
           end
         end
       end

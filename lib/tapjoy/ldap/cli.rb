@@ -7,7 +7,7 @@ module Tapjoy
       class << self
         def commands
           subcommand = %w(user group key audit)
-          Trollop::options do
+          Trollop.options do
             usage '[SUB_COMMAND] [options]'
             synopsis "\nTool to manage LDAP resources.\nAvailable subcommands are: #{subcommand}"
             version "#{File.basename($PROGRAM_NAME)} #{Tapjoy::LDAP::VERSION} \u00A9 2015 Tapjoy, Inc."

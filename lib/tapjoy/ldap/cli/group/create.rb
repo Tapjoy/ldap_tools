@@ -6,15 +6,13 @@ module Tapjoy
         class Create
           def create
             # Check for errors
-            Trollop::die :type, "argument must be 'user' or 'service'" unless ['user', 'service'].include?opts[:type]
+            Trollop.die :type, "argument must be 'user' or 'service'" unless ['user', 'service'].include?(opts[:type])
 
             puts Tapjoy::LDAP::API::Group.create(opts[:name], opts[:type])
           end
 
-          private
-
-          def opts
-            @opts ||= Trollop::options do
+          private def opts
+            @opts ||= Trollop.options do
               # Set help message
               usage 'group create [options]'
               synopsis "\nThis command is for creating new LDAP groups"

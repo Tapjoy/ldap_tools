@@ -10,8 +10,9 @@ module Tapjoy
           end
 
           private
+
           def opts
-            @opts ||= Trollop::options do
+            @opts ||= Trollop.options do
               # Set help message
               usage 'group delete [options]'
               synopsis "\nThis command is for deleting LDAP groups"
@@ -24,10 +25,8 @@ module Tapjoy
           def confirm
             puts "Confirm that you want to delete group #{opts[:name]} (yes/no)"
             print '>'
-            confirm = STDIN.gets.chomp().downcase
-            unless confirm.eql?('y') || confirm.eql?('yes')
-              abort("Deletion of #{ opts[:name] } aborted")
-            end
+            confirm = STDIN.gets.chomp.downcase
+            abort("Deletion of #{opts[:name]} aborted") unless confirm.start_with?('y')
           end
         end
       end

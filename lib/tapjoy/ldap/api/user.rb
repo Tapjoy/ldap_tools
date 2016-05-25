@@ -9,24 +9,24 @@ module Tapjoy
             # Properly capitalize names
             fname, lname = [fname, lname].map(&:capitalize)
 
-            Tapjoy::LDAP::client.add(
+            Tapjoy::LDAP.client.add(
               distinguished_name(fname, lname, type),
               ldap_attr(fname, lname, type, group)
             )
           end
 
           def destroy(username, type)
-            Tapjoy::LDAP::client.delete(
+            Tapjoy::LDAP.client.delete(
               distinguished_name(*name_of_user(username), type)
             )
           end
 
           def index
-            Tapjoy::LDAP::client.search('*', filter(uid: '*'))
+            Tapjoy::LDAP.client.search('*', filter(uid: '*'))
           end
 
           def show(username)
-            Tapjoy::LDAP::client.search('*', filter(uid: username))
+            Tapjoy::LDAP.client.search('*', filter(uid: username))
           end
 
           private
@@ -52,7 +52,7 @@ module Tapjoy
             %W(
               uid=#{username(fname, lname)}
               ou=#{organizational_unit(type)}
-              #{Tapjoy::LDAP::client.basedn}).join(',')
+              #{Tapjoy::LDAP.client.basedn}).join(',')
           end
           memoize :distinguished_name
 
@@ -61,7 +61,7 @@ module Tapjoy
             when 'user'
               'People'
             when 'service'
-              Tapjoy::LDAP::client.service_ou
+              Tapjoy::LDAP.client.service_ou
             else
               puts 'Unknown type'
             end
@@ -89,7 +89,7 @@ module Tapjoy
           memoize :ldap_attr
 
           def uidnumber(type)
-            Tapjoy::LDAP::client.get_max_id('user', type)
+            Tapjoy::LDAP.client.get_max_id('user', type)
           end
           memoize :uidnumber
 

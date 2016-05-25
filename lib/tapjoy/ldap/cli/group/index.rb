@@ -7,7 +7,9 @@ module Tapjoy
         class Index
           # Make the API call to show an LDAP user
           def index
-            Tapjoy::LDAP::API::Group.index
+            Tapjoy::LDAP::API::Group.index.each do |entry|
+              puts "#{entry.cn.first}:\t#{entry.gidnumber.first}"
+            end
           end
         end
       end

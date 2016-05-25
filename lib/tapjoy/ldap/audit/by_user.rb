@@ -32,7 +32,7 @@ module Tapjoy
         end
 
         def results
-          @results ||= Tapjoy::LDAP::client.search(attributes, filter)
+          @results ||= Tapjoy::LDAP.client.search(attributes, filter)
         end
 
         def group_results

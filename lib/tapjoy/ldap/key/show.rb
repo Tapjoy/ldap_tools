@@ -12,7 +12,7 @@ module Tapjoy
 
         private
         def opts
-          @opts ||= Trollop::options do
+          @opts ||= Trollop.options do
               # Set help message
               usage 'key show [options]'
               synopsis "\nThis command is for showing a specific user's SSH keys"

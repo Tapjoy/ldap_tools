@@ -26,9 +26,9 @@ module Tapjoy
                  filter = Net::LDAP::Filter.eq('objectclass','*'))
         @entries = []
         if @conn
-          @conn.search :base => @basedn,
-                       :filter => filter,
-                       :attributes => attributes do |entry|
+          @conn.search base: @basedn,
+                       filter: filter,
+                       attributes: attributes do |entry|
             @entries.push(entry)
           end
         else
@@ -40,7 +40,7 @@ module Tapjoy
 
       # Add objects to LDAP
       def add(distinguished_name, attributes)
-        @conn.add(:dn => distinguished_name, :attributes => attributes)
+        @conn.add(dn: distinguished_name, attributes: attributes)
         return return_result
       end
 
@@ -141,16 +141,12 @@ module Tapjoy
       def ldap_connect(host, ldap_password_file)
         port = @ldap_info['port']
         auth = {
-          :method   => :simple,
-          :username => @ldap_info['rootdn'],
-          :password => File.read(ldap_password_file).chomp
+          method:   :simple,
+          username: @ldap_info['rootdn'],
+          password: File.read(ldap_password_file).chomp
         }
 
-        ldap = Net::LDAP.new :host => host,
-                             :port => port,
-                             :base => @basedn,
-                             :auth => auth
-        return ldap
+        Net::LDAP.new(host: host, port: port, base: @base, auth: auth)
       end
 
       # Find valid LDAP host

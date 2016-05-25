@@ -15,7 +15,7 @@ module Tapjoy
 
         private
         def opts
-          @opts ||= Trollop::options do
+          @opts ||= Trollop.options do
               # Set help message
               usage 'key install'
               synopsis "\nThis command is for adding keys to the appropriate authorized_keys file"
