@@ -1,5 +1,13 @@
 # Change Log
 
+## [Unreleased](https://github.com/Tapjoy/ldap_tools/tree/HEAD)
+
+[Full Changelog](https://github.com/Tapjoy/ldap_tools/compare/0.8.0...HEAD)
+
+**Merged pull requests:**
+
+- Add code climate integration [\#15](https://github.com/Tapjoy/ldap_tools/pull/15) ([atayarani](https://github.com/atayarani))
+
 ## [0.8.0](https://github.com/Tapjoy/ldap_tools/tree/0.8.0) (2016-05-23)
 [Full Changelog](https://github.com/Tapjoy/ldap_tools/compare/0.7.0...0.8.0)
 

@@ -94,7 +94,7 @@ module Tapjoy
           memoize :uidnumber
 
           def gidnumber(group)
-            Tapjoy::LDAP::Group.lookup_id(group)
+            Tapjoy::LDAP::API::Group.lookup_id(group)
           end
           memoize :gidnumber
 

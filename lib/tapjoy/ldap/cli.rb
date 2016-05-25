@@ -1,4 +1,5 @@
 require_relative 'cli/user'
+require_relative 'cli/group'
 
 module Tapjoy
   module LDAP
@@ -18,7 +19,7 @@ module Tapjoy
           when 'user'
             Tapjoy::LDAP::CLI::User.commands
           when 'group'
-            Tapjoy::LDAP::Group.commands
+            Tapjoy::LDAP::CLI::Group.commands
           when 'key'
             Tapjoy::LDAP::Key.commands
           when 'audit'
