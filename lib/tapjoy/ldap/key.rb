@@ -11,7 +11,7 @@ module Tapjoy
         SUB_COMMANDS = %w(add remove install list show)
 
         def commands
-          Trollop::options do
+          Trollop.options do
             usage 'key [SUB_COMMAND] [options]'
             synopsis "\nThis object is used for user key management\nAvailable subcommands are: #{SUB_COMMANDS}"
 
@@ -57,7 +57,7 @@ module Tapjoy
           key_results = {}
           filter = Net::LDAP::Filter.eq('sshPublicKey', '*')
           attributes = %w(uid sshPublicKey)
-          results = Tapjoy::LDAP::client.search(attributes, filter)
+          results = Tapjoy::LDAP.client.search(attributes, filter)
           results.each {|result| key_results[result.uid[0]] = result.sshPublicKey}
           key_results
         end

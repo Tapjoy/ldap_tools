@@ -11,7 +11,7 @@ module Tapjoy
           SUB_COMMANDS = %w(create delete index show)
 
           def commands
-            Trollop::options do
+            Trollop.options do
               usage 'user [SUB_COMMAND] [options]'
               synopsis "\nThis object is used for user management\nAvailable subcommands are: #{SUB_COMMANDS}"
 

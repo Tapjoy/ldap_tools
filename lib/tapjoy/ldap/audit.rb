@@ -7,7 +7,7 @@ module Tapjoy
         SUB_COMMANDS = %w(by_user by_group raw)
 
         def commands
-          Trollop::options do
+          Trollop.options do
             usage 'user [SUB_COMMAND] [options]'
             synopsis "\nThis object is used for auditing LDAP permissions\nAvailable subcommands are: #{SUB_COMMANDS}"
 
@@ -35,7 +35,7 @@ module Tapjoy
         end
 
         def raw
-          puts Tapjoy::LDAP::client.search.inspect
+          puts Tapjoy::LDAP.client.search.inspect
         end
 
         # Get hash of groups with list of members of each group
@@ -43,7 +43,7 @@ module Tapjoy
           filter = Net::LDAP::Filter.eq('objectclass', 'posixGroup')
           attributes = %w(cn memberUid)
 
-          results = Tapjoy::LDAP::client.search(attributes, filter)
+          results = Tapjoy::LDAP.client.search(attributes, filter)
         end
 
 

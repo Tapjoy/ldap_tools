@@ -9,13 +9,13 @@ module Tapjoy
           Tapjoy::LDAP::Key.verify_user(opts[:user], results)
 
           confirm unless opts[:force]
-          Tapjoy::LDAP::client.replace_attribute(
+          Tapjoy::LDAP.client.replace_attribute(
             @user_dn, :sshPublicKey, keep_keys)
         end
 
         private
         def opts
-          @opts ||= Trollop::options do
+          @opts ||= Trollop.options do
             # Set help message
             usage 'key remove [options]'
             synopsis "\nThis command is for removing a user's SSH key(s)"
@@ -36,7 +36,7 @@ module Tapjoy
         end
 
         def results
-          @results ||= Tapjoy::LDAP::client.search(['sshPublicKey'], filter)
+          @results ||= Tapjoy::LDAP.client.search(['sshPublicKey'], filter)
         end
 
         def current_keys
@@ -74,17 +74,10 @@ module Tapjoy
           get_confirmation
         end
 
-        def fd
-          @fd ||= IO.sysopen('/dev/tty', 'w+')
-        end
-
         def get_confirmation
           print '>'
-          confirm = gets.chomp
-          # IO.open(fd, 'w+')  { |io| confirm = io.gets.chomp }
-          unless confirm.eql?('y') || confirm.eql?('yes')
-            abort("Deletion of #{ opts[:user] } aborted")
-          end
+          confirm = STDIN.gets.chomp.downcase
+          abort('Deletion of key aborted') unless confirm.start_with?('y')
         end
       end
     end

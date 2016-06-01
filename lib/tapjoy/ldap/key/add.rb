@@ -8,14 +8,14 @@ module Tapjoy
           filter_users.each  do |result|
             confirm_ldap_schema(result)
             keys.each do |key|
-              puts Tapjoy::LDAP::client.add_attribute(result.dn, :sshPublicKey, key)
+              puts Tapjoy::LDAP.client.add_attribute(result.dn, :sshPublicKey, key)
             end
           end
         end
 
         private
         def opts
-          @opts ||= Trollop::options do
+          @opts ||= Trollop.options do
               # Set help message
               usage 'key add [options]'
               synopsis "\nThis command is for adding user keys to a given user's profile"
@@ -32,7 +32,7 @@ module Tapjoy
 
         def filter_users
           filter = Net::LDAP::Filter.eq('uid', opts[:user])
-          results = Tapjoy::LDAP::client.search(attributes = ['*'], filter = filter)
+          results = Tapjoy::LDAP.client.search(attributes = ['*'], filter = filter)
 
           Tapjoy::LDAP::Key.verify_user(opts[:user], results)
 

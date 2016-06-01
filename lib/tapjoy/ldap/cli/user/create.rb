@@ -15,7 +15,7 @@ module Tapjoy
 
           private
           def opts
-            @opts ||= Trollop::options do
+            @opts ||= Trollop.options do
               # Set help message
               usage 'user create [options]'
               synopsis "\nThis command is for creating new LDAP users"
@@ -32,8 +32,8 @@ module Tapjoy
           end
 
           def verify_arguments
-            Trollop::die :user, 'argument count must be two' if opts[:user].size != 2
-            Trollop::die :type, "argument must be 'user' or 'service'" unless %w(user service).include?opts[:type]
+            Trollop.die :user, 'argument count must be two' if opts[:user].size != 2
+            Trollop.die :type, "argument must be 'user' or 'service'" unless %w(user service).include?(opts[:type])
           end
         end
       end

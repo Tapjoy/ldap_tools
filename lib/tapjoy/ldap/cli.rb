@@ -1,4 +1,5 @@
 require_relative 'cli/user'
+require_relative 'cli/group'
 
 module Tapjoy
   module LDAP
@@ -6,7 +7,7 @@ module Tapjoy
       class << self
         def commands
           subcommand = %w(user group key audit)
-          Trollop::options do
+          Trollop.options do
             usage '[SUB_COMMAND] [options]'
             synopsis "\nTool to manage LDAP resources.\nAvailable subcommands are: #{subcommand}"
             version "#{File.basename($PROGRAM_NAME)} #{Tapjoy::LDAP::VERSION} \u00A9 2015 Tapjoy, Inc."
@@ -18,7 +19,7 @@ module Tapjoy
           when 'user'
             Tapjoy::LDAP::CLI::User.commands
           when 'group'
-            Tapjoy::LDAP::Group.commands
+            Tapjoy::LDAP::CLI::Group.commands
           when 'key'
             Tapjoy::LDAP::Key.commands
           when 'audit'
