@@ -27,7 +27,7 @@ LDAP Tools
 This LDAP tools gem is designed as a wrapper around Net/LDAP to make interacting with LDAP easier.  No knowledge of LDIF required.
 
 ## Requirements
-* Ruby 2.1
+* Ruby 2.3
 * Trollop gem
 * Net/LDAP gem
 
