@@ -1,11 +1,11 @@
 # Change Log
 
-## [Unreleased](https://github.com/Tapjoy/ldap_tools/tree/HEAD)
-
-[Full Changelog](https://github.com/Tapjoy/ldap_tools/compare/0.8.0...HEAD)
+## [0.8.1](https://github.com/Tapjoy/ldap_tools/tree/0.8.1) (2016-06-01)
+[Full Changelog](https://github.com/Tapjoy/ldap_tools/compare/0.8.0...0.8.1)
 
 **Merged pull requests:**
 
+- first pass at group API [\#16](https://github.com/Tapjoy/ldap_tools/pull/16) ([atayarani](https://github.com/atayarani))
 - Add code climate integration [\#15](https://github.com/Tapjoy/ldap_tools/pull/15) ([atayarani](https://github.com/atayarani))
 
 ## [0.8.0](https://github.com/Tapjoy/ldap_tools/tree/0.8.0) (2016-05-23)
