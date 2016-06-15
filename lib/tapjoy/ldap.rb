@@ -5,7 +5,6 @@ require 'memoist'
 require_relative 'ldap/cli'
 require_relative 'ldap/base'
 require_relative 'ldap/key'
-require_relative 'ldap/audit'
 require_relative 'ldap/version'
 
 
