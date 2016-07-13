@@ -91,7 +91,6 @@ module Tapjoy
           def uidnumber(type)
             Tapjoy::LDAP.client.get_max_id('user', type)
           end
-          memoize :uidnumber
 
           def gidnumber(group)
             Tapjoy::LDAP::API::Group.lookup_id(group)
