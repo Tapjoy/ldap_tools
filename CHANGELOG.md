@@ -1,5 +1,12 @@
 # Change Log
 
+## [0.8.2](https://github.com/Tapjoy/ldap_tools/tree/0.8.2) (2016-07-13)
+[Full Changelog](https://github.com/Tapjoy/ldap_tools/compare/0.8.1...0.8.2)
+
+**Merged pull requests:**
+
+- don't memoize uids [\#18](https://github.com/Tapjoy/ldap_tools/pull/18) ([atayarani](https://github.com/atayarani))
+
 ## [0.8.1](https://github.com/Tapjoy/ldap_tools/tree/0.8.1) (2016-06-01)
 [Full Changelog](https://github.com/Tapjoy/ldap_tools/compare/0.8.0...0.8.1)
 
