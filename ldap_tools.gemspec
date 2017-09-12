@@ -25,4 +25,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency('guard-yard', '~> 2.1')
   s.add_development_dependency('guard-yardstick', '~> 0.1')
   s.add_development_dependency('codacy-coverage', '~>1.0')
+  s.add_development_dependency 'pry'
+  s.add_development_dependency 'pry-byebug'
 end

@@ -8,12 +8,19 @@ module Tapjoy
       def initialize
         ldap_config_file = "#{ldap_config_directory}/ldap_info.yaml"
         ldap_password_file = "#{ldap_config_directory}/ldap.secret"
-        @ldap_info    = YAML.load_file(ldap_config_file)
-        @hosts        = @ldap_info['servers']
-        @basedn       = @ldap_info['basedn']
-        @conn         = find_valid_host(ldap_password_file)
-        @service_ou   = @ldap_info['service_ou']
-        @email_domain = @ldap_info['email_domain']
+
+        begin
+          if can_read_files?(ldap_config_file, ldap_password_file)
+            load_config_from_files(ldap_config_file, ldap_password_file)
+          else
+            load_config_from_env
+          end
+        rescue => err
+          STDERR.puts "Error message: #{err.inspect}"
+          abort("Config not specified.  Either provide #{ldap_config_file} and #{ldap_password_file} or environment variables")
+        else
+          @conn = find_valid_host
+        end
       end
 
       # Set LDAP Config Directory
@@ -138,21 +145,20 @@ module Tapjoy
       private
 
       # Connect to LDAP server
-      def ldap_connect(host, ldap_password_file)
-        port = @ldap_info['port']
+      def ldap_connect(host)
         auth = {
           method:   :simple,
-          username: @ldap_info['rootdn'],
-          password: File.read(ldap_password_file).chomp
+          username: @rootdn,
+          password: @ldap_password
         }
 
-        Net::LDAP.new(host: host, port: port, base: @base, auth: auth)
+        Net::LDAP.new(host: host, port: @port, base: @basedn, auth: auth)
       end
 
       # Find valid LDAP host
-      def find_valid_host(ldap_password_file)
+      def find_valid_host
         @hosts.each do |host|
-          @ldap = ldap_connect(host, ldap_password_file)
+          @ldap = ldap_connect(host)
           begin
             if @ldap.bind
               return @ldap
@@ -180,6 +186,36 @@ module Tapjoy
         end
 
         return minID, maxID
+      end
+
+      # Load config from files
+      def load_config_from_files(ldap_config_file, ldap_password_file)
+        ldap_info      = YAML.load_file(ldap_config_file)
+        @rootdn        = ldap_info['rootdn']
+        @hosts         = ldap_info['servers']
+        @basedn        = ldap_info['basedn']
+        @service_ou    = ldap_info['service_ou']
+        @email_domain  = ldap_info['email_domain']
+        @port          = ldap_info['port']
+        @ldap_password = File.read(ldap_password_file).chomp
+      end
+
+      # Load config from ENV
+      def load_config_from_env
+        raise Tapjoy::LDAP::Errors::UndefinedServers if ENV['LDAP_SERVERS'].nil?
+
+        @rootdn        = ENV['LDAP_BIND_DN']
+        @basedn        = ENV['LDAP_BASE_DN']
+        @service_ou    = ENV['LDAP_SERVICE_OU']
+        @email_domain  = ENV['LDAP_EMAIL_DOMAIN']
+        @port          = ENV['LDAP_PORT']
+        @ldap_password = ENV['LDAP_BIND_PASS']
+        @hosts         = ENV['LDAP_SERVERS'].split(',')
+      end
+
+      # Check if config files are readable
+      def can_read_files?(ldap_config_file, ldap_password_file)
+        File.readable?(ldap_config_file) && File.readable?(ldap_password_file)
       end
     end
   end
