@@ -2,11 +2,13 @@ require 'net/ldap'
 require 'yaml'
 require 'trollop'
 require 'memoist'
+require 'pry'
 require_relative 'ldap/cli'
 require_relative 'ldap/base'
 require_relative 'ldap/key'
 require_relative 'ldap/audit'
 require_relative 'ldap/version'
+require_relative 'ldap/errors'
 
 
 module Tapjoy
