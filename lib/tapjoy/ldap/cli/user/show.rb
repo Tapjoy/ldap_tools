@@ -24,7 +24,7 @@ module Tapjoy
               # Set help message
               usage "user show [options]"
 
-              opt :user, 'Specify username', type: :string, required: true
+              opt :username, 'Specify username', type: :string, required: true
             end
           end
         end

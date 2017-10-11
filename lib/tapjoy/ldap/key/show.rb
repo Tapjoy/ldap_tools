@@ -17,7 +17,7 @@ module Tapjoy
               usage 'key show [options]'
               synopsis "\nThis command is for showing a specific user's SSH keys"
 
-              opt :user, 'Specify username', type: :string, required: true
+              opt :username, 'Specify username', type: :string, required: true
           end
         end
 

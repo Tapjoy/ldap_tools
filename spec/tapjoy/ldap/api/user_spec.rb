@@ -25,7 +25,7 @@ RSpec.describe 'Tapjoy::LDAP::API::User' do
     }}
 
     it 'creates a user' do
-      ARGV << %w(create -u test user -g users); ARGV.flatten!
+      ARGV << %w(create -n test user -g users); ARGV.flatten!
       allow(Tapjoy::LDAP::API::User).to receive(:create_password).and_return('testpass')
       expect(fake_ldap).to receive(:add).with(distinguished_name, ldap_attr)
 

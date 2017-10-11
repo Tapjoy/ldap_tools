@@ -20,7 +20,7 @@ module Tapjoy
               usage 'key add [options]'
               synopsis "\nThis command is for adding user keys to a given user's profile"
 
-              opt :user, 'Specify username to add key to', type: :string,
+              opt :username, 'Specify username to add key to', type: :string,
                 required: true
               opt :filename, 'File to load keys from', type: :string
           end
