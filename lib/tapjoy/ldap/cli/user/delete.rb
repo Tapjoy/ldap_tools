@@ -9,7 +9,7 @@ module Tapjoy
           def delete
             verify_arguments
             confirm unless opts[:force]
-            puts Tapjoy::LDAP::API::User.destroy(opts[:user], opts[:type])
+            puts Tapjoy::LDAP::API::User.destroy(opts[:username], opts[:type])
           end
 
           private
@@ -18,7 +18,7 @@ module Tapjoy
               # Set help message
               usage "user delete [options]"
 
-              opt :user, 'Specify username', type: :string, required: true
+              opt :username, 'Specify username', type: :string, required: true
               opt :force, 'Force delete'
               opt :type, 'Specfy if this is a user or service account', type: :string, default: 'user'
             end

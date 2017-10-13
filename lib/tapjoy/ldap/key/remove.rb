@@ -6,7 +6,7 @@ module Tapjoy
         # Remove key from LDAP
         def remove
           keys  # Get keys first
-          Tapjoy::LDAP::Key.verify_user(opts[:user], results)
+          Tapjoy::LDAP::Key.verify_user(opts[:username], results)
 
           confirm unless opts[:force]
           Tapjoy::LDAP.client.replace_attribute(
@@ -20,7 +20,7 @@ module Tapjoy
             usage 'key remove [options]'
             synopsis "\nThis command is for removing a user's SSH key(s)"
 
-            opt :user, 'Specify username to delete key from', type: :string,
+            opt :username, 'Specify username to delete key from', type: :string,
                 required: true
             opt :filename, 'File to load key deletion list from', type: :string
             opt :force, 'Force delete', short: '-F'
