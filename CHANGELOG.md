@@ -1,5 +1,12 @@
 # Change Log
 
+## [0.10.0](https://github.com/Tapjoy/ldap_tools/tree/0.10.0) (2017-10-13)
+[Full Changelog](https://github.com/Tapjoy/ldap_tools/compare/0.9.2...0.10.0)
+
+**Merged pull requests:**
+
+- Make arguments more consistent [\#21](https://github.com/Tapjoy/ldap_tools/pull/21) ([atayarani](https://github.com/atayarani))
+
 ## [0.9.2](https://github.com/Tapjoy/ldap_tools/tree/0.9.2) (2017-09-13)
 [Full Changelog](https://github.com/Tapjoy/ldap_tools/compare/0.8.2...0.9.2)
 
