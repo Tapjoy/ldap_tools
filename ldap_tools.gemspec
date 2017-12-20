@@ -16,7 +16,6 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency('net-ldap', '= 0.11')
   s.add_runtime_dependency('highline', '~> 1.0')
   s.add_runtime_dependency('memoist', '>= 0.14')
-  s.add_runtime_dependency('activesupport', '~> 4.2')
   s.add_development_dependency('rspec', '~> 3.2')
   s.add_development_dependency('yard', '~> 0.8')
   s.add_development_dependency('guard', '~> 2.13')
