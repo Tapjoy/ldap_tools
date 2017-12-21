@@ -1,5 +1,8 @@
 # Change Log
 
+## [0.10.1](https://github.com/Tapjoy/ldap_tools/tree/0.10.1) (2017-12-20)
+[Full Changelog](https://github.com/Tapjoy/ldap_tools/compare/0.10.0...0.10.1)
+
 ## [0.10.0](https://github.com/Tapjoy/ldap_tools/tree/0.10.0) (2017-10-13)
 [Full Changelog](https://github.com/Tapjoy/ldap_tools/compare/0.9.2...0.10.0)
 
@@ -12,6 +15,7 @@
 
 **Merged pull requests:**
 
+- update changelog [\#20](https://github.com/Tapjoy/ldap_tools/pull/20) ([atayarani](https://github.com/atayarani))
 - Allow ldaptools to use env vars as well as config files [\#19](https://github.com/Tapjoy/ldap_tools/pull/19) ([atayarani](https://github.com/atayarani))
 
 ## [0.8.2](https://github.com/Tapjoy/ldap_tools/tree/0.8.2) (2016-07-13)
