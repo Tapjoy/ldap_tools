@@ -1,3 +1,4 @@
+require 'json'
 require_relative 'key/add'
 require_relative 'key/remove'
 require_relative 'key/show'
@@ -44,7 +45,7 @@ module Tapjoy
         end
 
         def list
-          Tapjoy::LDAP::Key.get_keys_from_ldap
+          puts JSON.pretty_generate(Tapjoy::LDAP::Key.get_keys_from_ldap)
         end
 
         def show
@@ -53,12 +54,11 @@ module Tapjoy
         end
 
         def get_keys_from_ldap
-
           key_results = {}
           filter = Net::LDAP::Filter.eq('sshPublicKey', '*')
           attributes = %w(uid sshPublicKey)
           results = Tapjoy::LDAP.client.search(attributes, filter)
-          results.each {|result| key_results[result.uid[0]] = result.sshPublicKey}
+          results.each {|result| key_results[result.uid[0]] = result.sshpublickey}
           key_results
         end
 
