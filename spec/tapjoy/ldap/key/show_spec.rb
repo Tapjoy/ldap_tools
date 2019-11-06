@@ -5,7 +5,7 @@ RSpec.describe 'Tapjoy::LDAP::Key::Show.show' do
   let(:ldap_hash) {
     {
       uid: uid,
-      sshPublicKey: sshPublicKey
+      sshpublickey: sshPublicKey
     }
   }
   let(:result) { OpenStruct.new ldap_hash}

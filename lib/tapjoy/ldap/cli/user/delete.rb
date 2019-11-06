@@ -25,10 +25,10 @@ module Tapjoy
           end
 
           def confirm
-            puts "Confirm that you want to delete user: #{opts[:user]} (yes/no)"
+            puts "Confirm that you want to delete user: #{opts[:username]} (yes/no)"
             print '>'
             confirm = STDIN.gets.chomp.downcase
-            abort("Deletion of #{opts[:user]} aborted") unless confirm.start_with?('y')
+            abort("Deletion of #{opts[:username]} aborted") unless confirm.start_with?('y')
           end
 
           def verify_arguments
