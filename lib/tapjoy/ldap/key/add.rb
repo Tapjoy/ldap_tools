@@ -15,7 +15,7 @@ module Tapjoy
 
         private
         def opts
-          @opts ||= Trollop.options do
+          @opts ||= Optimist.options do
               # Set help message
               usage 'key add [options]'
               synopsis "\nThis command is for adding user keys to a given user's profile"

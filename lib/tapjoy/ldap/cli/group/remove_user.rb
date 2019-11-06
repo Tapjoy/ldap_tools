@@ -13,7 +13,7 @@ module Tapjoy
           private
 
           def opts
-            @opts ||= Trollop.options do
+            @opts ||= Optimist.options do
               # Set help message
               usage 'group remove_user [options]'
               synopsis "\nThis command is for removing existing users from existing groups"

@@ -7,7 +7,7 @@ module Tapjoy
         SUB_COMMANDS = %w(by_user by_group raw)
 
         def commands
-          Trollop.options do
+          Optimist.options do
             usage 'user [SUB_COMMAND] [options]'
             synopsis "\nThis object is used for auditing LDAP permissions\nAvailable subcommands are: #{SUB_COMMANDS}"
 

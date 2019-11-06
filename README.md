@@ -28,7 +28,7 @@ This LDAP tools gem is designed as a wrapper around Net/LDAP to make interacting
 
 ## Requirements
 * Ruby 2.3
-* Trollop gem
+* Optimist gem
 * Net/LDAP gem
 
 ## Installation
