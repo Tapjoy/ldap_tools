@@ -31,10 +31,10 @@ module Tapjoy
         end
 
         def filter_users
-          filter = Net::LDAP::Filter.eq('uid', opts[:user])
+          filter = Net::LDAP::Filter.eq('uid', opts[:username])
           results = Tapjoy::LDAP.client.search(attributes = ['*'], filter = filter)
 
-          Tapjoy::LDAP::Key.verify_user(opts[:user], results)
+          Tapjoy::LDAP::Key.verify_user(opts[:username], results)
 
           results
         end

@@ -5,7 +5,7 @@ RSpec.describe 'Tapjoy::LDAP::Key::Install.install' do
   let(:ldap_hash) {
     {
       uid: [username],
-      sshPublicKey: File.read(filename_ldap).split("\n")
+      sshpublickey: File.read(filename_ldap).split("\n")
     }
   }
 

@@ -7,7 +7,7 @@ module Tapjoy
         class Show
           # Make the API call to show an LDAP user
           def show
-            Tapjoy::LDAP::API::User.show(opts[:user]).each do |entry|
+            Tapjoy::LDAP::API::User.show(opts[:username]).each do |entry|
               puts "DN: #{entry.dn}"
               entry.each do |attribute, values|
                 puts "   #{attribute}:"

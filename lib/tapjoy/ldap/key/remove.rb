@@ -32,7 +32,7 @@ module Tapjoy
         end
 
         def filter
-          @filter ||= Net::LDAP::Filter.eq('uid', opts[:user])
+          @filter ||= Net::LDAP::Filter.eq('uid', opts[:username])
         end
 
         def results
@@ -69,7 +69,7 @@ module Tapjoy
           print "\t #{ keep_keys }\n\n"
           puts "Delete these keys:\n\n"
           print "\t #{ delete_keys }\n\n"
-          puts "Ignore these keys (not found in LDAP for #{ opts[:user]}):\n\n"
+          puts "Ignore these keys (not found in LDAP for #{ opts[:username]}):\n\n"
           print "\t #{ keys_not_found }\n\n"
           get_confirmation
         end
