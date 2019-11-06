@@ -20,7 +20,7 @@ module Tapjoy
 
           private
           def opts
-            @opts ||= Trollop.options do
+            @opts ||= Optimist.options do
               # Set help message
               usage "user show [options]"
 

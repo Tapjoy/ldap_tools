@@ -15,13 +15,13 @@ module Tapjoy
 
           private
           def opts
-            @opts ||= Trollop.options do
+            @opts ||= Optimist.options do
               # Set help message
               usage 'user create [options]'
               synopsis "\nThis command is for creating new LDAP users"
 
               # Name is two arguments
-              # Trollop will accept more, but we will only parse two later
+              # Optimist will accept more, but we will only parse two later
               # TODO: support given names that include a space
               opt :name, "Specify user's first and last name", type: :strings, required: true
 
@@ -32,8 +32,8 @@ module Tapjoy
           end
 
           def verify_arguments
-            Trollop.die :name, 'argument count must be two' if opts[:name].size != 2
-            Trollop.die :type, "argument must be 'user' or 'service'" unless %w(user service).include?(opts[:type])
+            Optimist.die :name, 'argument count must be two' if opts[:name].size != 2
+            Optimist.die :type, "argument must be 'user' or 'service'" unless %w(user service).include?(opts[:type])
           end
         end
       end

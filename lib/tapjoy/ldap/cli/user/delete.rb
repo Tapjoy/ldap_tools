@@ -14,7 +14,7 @@ module Tapjoy
 
           private
           def opts
-            @opts ||= Trollop.options do
+            @opts ||= Optimist.options do
               # Set help message
               usage "user delete [options]"
 
@@ -32,7 +32,7 @@ module Tapjoy
           end
 
           def verify_arguments
-            Trollop.die :type, "argument must be 'user' or 'service'" unless %w(user service).include?(opts[:type])
+            Optimist.die :type, "argument must be 'user' or 'service'" unless %w(user service).include?(opts[:type])
           end
         end
       end

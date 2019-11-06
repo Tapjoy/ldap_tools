@@ -15,7 +15,7 @@ module Tapjoy
           SUB_COMMANDS = %w(create delete add_user remove_user)
 
           def commands
-            Trollop.options do
+            Optimist.options do
               usage 'group [SUB_COMMAND] [options]'
               synopsis "\nThis object is used for group management\nAvailable subcommands are: #{SUB_COMMANDS}"
 

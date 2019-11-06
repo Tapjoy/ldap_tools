@@ -12,7 +12,7 @@ module Tapjoy
           private
 
           def opts
-            @opts ||= Trollop.options do
+            @opts ||= Optimist.options do
               # Set help message
               usage 'group delete [options]'
               synopsis "\nThis command is for deleting LDAP groups"

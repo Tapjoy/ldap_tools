@@ -1,6 +1,6 @@
 require 'net/ldap'
 require 'yaml'
-require 'trollop'
+require 'optimist'
 require 'memoist'
 require 'pry'
 require_relative 'ldap/cli'
@@ -25,7 +25,7 @@ module Tapjoy
 
     class InvalidArgument < ArgumentError
       def initialize
-        Trollop.educate
+        Optimist.educate
       end
     end
   end

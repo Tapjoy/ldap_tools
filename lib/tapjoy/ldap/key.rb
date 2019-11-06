@@ -12,7 +12,7 @@ module Tapjoy
         SUB_COMMANDS = %w(add remove install list show)
 
         def commands
-          Trollop.options do
+          Optimist.options do
             usage 'key [SUB_COMMAND] [options]'
             synopsis "\nThis object is used for user key management\nAvailable subcommands are: #{SUB_COMMANDS}"
 
