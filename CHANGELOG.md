@@ -1,5 +1,22 @@
 # Change Log
 
+## [0.11.1](https://github.com/Tapjoy/ldap_tools/tree/0.10.1) (2019-11-06)
+[Full Changelog](https://github.com/Tapjoy/ldap_tools/compare/0.11.0...0.11.1)
+
+## [0.11.0](https://github.com/Tapjoy/ldap_tools/tree/0.10.1) (2019-11-06)
+[Full Changelog](https://github.com/Tapjoy/ldap_tools/compare/0.10.1...0.11.0)
+
+
+**Merged pull requests:**
+
+- Remove runtime requirement on pry gem. [\#25](https://github.com/Tapjoy/ldap_tools/pull/25) ([ehealy](https://github.com/ehealy))
+
+- Replace Trollop with Optimist [\#24](https://github.com/Tapjoy/ldap_tools/pull/24) ([alanbrent](https://github.com/alanbrent))
+
+- Fix incorrect username references [\#23](https://github.com/Tapjoy/ldap_tools/pull/23) ([alanbrent](https://github.com/alanbrent))
+
+- Fix key list [\#23](https://github.com/Tapjoy/ldap_tools/pull/23) ([alanbrent](https://github.com/alanbrent))
+
 ## [0.10.1](https://github.com/Tapjoy/ldap_tools/tree/0.10.1) (2017-12-20)
 [Full Changelog](https://github.com/Tapjoy/ldap_tools/compare/0.10.0...0.10.1)
 
@@ -7,7 +24,7 @@
 [Full Changelog](https://github.com/Tapjoy/ldap_tools/compare/0.9.2...0.10.0)
 
 **Merged pull requests:**
-
+- Remove unused activesupport dependency [\#22](https://github.com/Tapjoy/ldap_tools/pull/22) ([atayarani](https://github.com/atayarani))
 - Make arguments more consistent [\#21](https://github.com/Tapjoy/ldap_tools/pull/21) ([atayarani](https://github.com/atayarani))
 
 ## [0.9.2](https://github.com/Tapjoy/ldap_tools/tree/0.9.2) (2017-09-13)
