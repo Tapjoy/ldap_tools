@@ -1,0 +1,24 @@
+# For more information about the available options please visit: http://go/backstage (VPN required)
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  annotations:
+    github.com/project-slug: Tapjoy/ldap_tools
+    snyk.io/org-id: cb8b78a9-d4c9-41fa-85e4-9a0b0026ee0d
+    snyk.io/target-id: Tapjoy/ldap_tools
+  name: ldap_tools
+  description: "Utilities to assist with the management of LDAP resources"
+  labels:
+    costcenter: "8213"
+  tags:
+    - public
+    - offerwall
+  links:
+    - url: https://unity.slack.com/channels/offerwall-eng-operations
+      title: "#offerwall-eng-operations"
+      icon: chat
+spec:
+  type: library
+  lifecycle: production
+  owner: tapjoy/eng-group-ops
+  system: offerwall-security
